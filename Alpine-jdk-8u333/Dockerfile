@@ -52,7 +52,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
 
 FROM alpine-glibc
 
-ADD jdk-8u333-linux-x64.tar.gz /usr/local/
+ADD https://www.woniusnail.com/wp-content/uploads/2022/07/jdk-8u333-linux-x64.tar.gz /usr/local/
 
 ENV JAVA_HOME=/usr/local/jdk1.8.0_333
 ENV CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
