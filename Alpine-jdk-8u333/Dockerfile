@@ -58,36 +58,4 @@ ENV JAVA_HOME=/usr/local/jdk1.8.0_333
 ENV CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 ENV PATH=$PATH:$JAVA_HOME/bin
 
-COPY cert.cer $JAVA_HOME/lib/security/
-
-COPY baicfc.cer $JAVA_HOME/lib/security/
-
-COPY sinfusi.cer $JAVA_HOME/lib/security/
-
-COPY osbcert.cer $JAVA_HOME/lib/security/
-
-COPY pengyuan.cer $JAVA_HOME/lib/security/
-
-COPY old_cacerts $JAVA_HOME/lib/security/
-
-COPY arthas-boot.jar /opt/
-
-WORKDIR $JAVA_HOME/lib/security/
-
-RUN keytool -import -alias yangbing -keystore cacerts -file cert.cer -storepass changeit -trustcacerts -noprompt && \
-
-    keytool -import -alias baicfc -keystore cacerts -file baicfc.cer -storepass changeit -trustcacerts -noprompt && \
-
-    keytool -import -alias sinfusi -keystore cacerts -file sinfusi.cer -storepass changeit -trustcacerts -noprompt && \
-
-    keytool -import -alias osbcert -keystore cacerts -file osbcert.cer -storepass changeit -trustcacerts -noprompt && \
-
-    keytool -import -alias pengyuan -keystore cacerts -file pengyuan.cer -storepass changeit -trustcacerts -noprompt && \
-   
-    keytool -importkeystore -srckeystore old_cacerts -destkeystore cacerts -srcstorepass changeit -deststorepass changeit -trustcacerts -noprompt && \
-   
-    rm -rfv *.cer && \
-    
-    rm -rf old_cacerts
-
 WORKDIR /
